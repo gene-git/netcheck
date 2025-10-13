@@ -1,10 +1,10 @@
 -------------------------------------------------------
  Changelog    : netcheck
- Tags         :  ➙ 1.9.0
+ Tags         :  ➙ 1.9.1
               :  ➙ 2025-10-13
-              : All tags.
+              : 6 tags. See Docs for full changelog
 -------------------------------------------------------
 
- 2025-10-13   : 1.9.0
-              - Release 1.9.0
-              - Initial commit
+ 2025-10-13   : 1.9.1
+              - Update AUR PKGBUILD with current version
+              - update Docs Changelogs
