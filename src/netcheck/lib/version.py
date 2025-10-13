@@ -4,7 +4,7 @@
 Project netcheck
 """
 
-__version__ = "1.9.0"
+__version__ = "1.9.1"
 __date__ = "2025-10-13"
 __reldev__ = "release"
 
