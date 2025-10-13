@@ -1,0 +1,42 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "netcheck"
+dynamic = ["version"]
+description = "netcheck : Check network connectivity"
+authors = [{ name = "Gene C", email = "arch@sapience.com" }]
+license = "MIT"
+readme = "README.rst"
+keywords = []
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3.12",
+]
+dependencies = []
+
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/netcheck"]
+
+[[tool.hatch.envs.all.matrix]]
+python = ["3.13", "3.14", "3.15"]
+
+[project.urls]
+Documentation = "https://github.com/gene-git/netcheck/Docs"
+Issues = "https://github.com/gene-git/netcheck/issues"
+Source = "https://github.com/gene-git/netcheck"
+
+[tool.hatch.version]
+path = "src/netcheck/lib/version.py"
+
+[tool.hatch.envs.default]
+
+[tool.hatch.envs.default.scripts]
+
+[tool.hatch.envs.lint]
+detached = true
+dependencies = [
+]

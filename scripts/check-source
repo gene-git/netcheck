@@ -1,0 +1,33 @@
+#!/usr/bin/bash
+#
+# Source code checks.
+#
+# Run in src dir
+# i.e. cd src/gfw
+# 
+
+apps=(
+    netcheck-plot.py netcheck.py
+)
+
+modules=(
+    lib
+)
+    
+echo "-------------------------------"
+echo "     pylint"
+
+PYTHONPATH=. pylint */*py ${apps[@]}
+
+
+echo "-------------------------------"
+echo "     pycodestyle"
+
+PYTHONPATH=. pycodestyle --max-line-length=110 */*py ${apps[@]}
+
+echo "-------------------------------"
+echo "     mypy"
+
+mypy --check-untyped-defs --follow-untyped-imports ${modules[@]} ${apps[@]}
+
+
