@@ -1,4 +1,4 @@
-.. SPDX-License-Identifier: MIT
+.. SPDX-License-Identifier: GPL-2.0-or-later
 
 ********
 netcheck
@@ -12,14 +12,24 @@ netcheck : Check network connectivity
 Key features
 ============
 
-* netcheck uses ping to check network status of host and/or /ips
+* netcheck uses ping to check network status of multiple hosts/ips
+* Checking a single remote site is insufficient to distinguish whether 
+  the path to that remote is the only route unavailable, or if all routes
+  are down.  We therefore recommend checking 2 hosts simultaneously. While more
+  may be better, we have found using 2 reliable remote hosts eliminates all 
+  false negatives. 
 * Data is saved to file(s)
 * netcheck-plot can be used to plot the saved data.
 
 New / Interesting
 ==================
 
-Initial Commit
+**1.10.0**
+
+* Switch packaging from hatch to uv
+* Testing to confirm all working on python 3.14.2
+* License GPL-2.0-or-later
+
 
 Getting Started
 ===============
@@ -196,9 +206,9 @@ latest commit on git master branch.
 License
 =======
 
-Created by Gene C. and licensed under the terms of the MIT license.
+Created by Gene C. and licensed under the terms of the GPL-2.0-or-later license.
 
-* SPDX-License-Identifier: MIT
+* SPDX-License-Identifier: GPL-2.0-or-later
 * SPDX-FileCopyrightText: © 2025-present  Gene C <arch@sapience.com>
 
 .. _Github: https://github.com/gene-git/netcheck

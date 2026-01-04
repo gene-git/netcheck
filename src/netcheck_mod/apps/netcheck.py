@@ -1,16 +1,15 @@
 #!/usr/bin/python
+# SPDX-License-Identifier: GPL-2.0-or-later
+# Copyright (c) 2025-present Gene C <arch@sapience.com>
 '''
  Check network staus using ping
    - Savs results to file(s)
 
  Sample use:
     netcheck -d <dir> -n 100 1.1.1.1 8.8.8.8
- ------------
-  2018-12-12
- ------------
 '''
 import asyncio
-from lib import NetCheck
+from netcheck_mod.lib import NetCheck
 
 
 async def main():
@@ -21,6 +20,6 @@ async def main():
     await ncheck.check()
     ncheck.reports()
 
-# -----------------------------------------------------
+
 if __name__ == '__main__':
     asyncio.run(main())

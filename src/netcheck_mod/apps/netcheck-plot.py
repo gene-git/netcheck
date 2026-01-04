@@ -1,9 +1,11 @@
 #!/usr/bin/python
+# SPDX-License-Identifier: GPL-2.0-or-later
+# Copyright (c) 2025-present Gene C <arch@sapience.com>
 '''
 Plot netcheck results
 '''
 # pylint: disable=invalid-name
-from lib import Plot
+from netcheck_mod.lib import Plot
 
 
 def main():

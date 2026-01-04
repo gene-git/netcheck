@@ -1,42 +1,44 @@
 [build-system]
-requires = ["hatchling"]
-build-backend = "hatchling.build"
+requires = ["uv_build>=0.9.21,<=1.0.0"]
+build-backend = "uv_build"
 
 [project]
 name = "netcheck"
-dynamic = ["version"]
 description = "netcheck : Check network connectivity"
 authors = [{ name = "Gene C", email = "arch@sapience.com" }]
-license = "MIT"
+license = "GPL-2.0-or-later"
 readme = "README.rst"
 keywords = []
 classifiers = [
     "Development Status :: 4 - Beta",
     "Programming Language :: Python",
-    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Programming Language :: Python :: 3.15",
 ]
+requires-python = ">=3.13"
+version = "1.10.0"
 dependencies = []
-
-
-[tool.hatch.build.targets.wheel]
-packages = ["src/netcheck"]
-
-[[tool.hatch.envs.all.matrix]]
-python = ["3.13", "3.14", "3.15"]
 
 [project.urls]
 Documentation = "https://github.com/gene-git/netcheck/Docs"
 Issues = "https://github.com/gene-git/netcheck/issues"
 Source = "https://github.com/gene-git/netcheck"
 
-[tool.hatch.version]
-path = "src/netcheck/lib/version.py"
-
-[tool.hatch.envs.default]
-
-[tool.hatch.envs.default.scripts]
-
-[tool.hatch.envs.lint]
-detached = true
-dependencies = [
+[tool.uv.build-backend]
+module-name = 'netcheck_mod'
+module-root = "src"
+source-include = [
+    '/netcheck_mod',
+    '/netcheck_mod/py.typed',
 ]
+source-exclude = [
+    ".pytest_cache",
+    "__pycache__",
+    ".mypy_cache",
+]
+
+[tool.mypy]
+check_untyped_defs = true
+follow_untyped_imports = true
+

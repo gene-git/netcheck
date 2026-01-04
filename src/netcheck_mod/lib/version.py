@@ -1,11 +1,11 @@
-# SPDX-License-Identifier: MIT
-# SPDX-FileCopyrightText: © 2022-present  Gene C <arch@sapience.com>
+# SPDX-License-Identifier: GPL-2.0-or-later
+# SPDX-FileCopyrightText: © 2022-present Gene C <arch@sapience.com>
 """
 Project netcheck
 """
 
-__version__ = "1.9.2"
-__date__ = "2025-10-13"
+__version__ = "1.10.0"
+__date__ = "2026-01-04"
 __reldev__ = "release"
 
 
