@@ -1,24 +1,22 @@
 # SPDX-License-Identifier: GPL-2.0-or-later
 # Copyright (c) 2025-present Gene C <arch@sapience.com>
-'''
- Check network staus using ping
-   - Savs results to file(s)
- ------------
-  2018-12-12
- ------------
-'''
+"""
+ Check network staus using ping and save results to file(s)
+"""
 # pylint: disable=too-few-public-methods,invalid-name
 # pylint: disable=too-many-instance-attributes
-# ---------------------------------
-from typing import (List)
+
+from typing import Any
 import argparse
+
+type _Opt = tuple[str | tuple[str, ...], dict[str, Any]]
 
 
 class Conf:
     """
      Command line inputs.
 
-     Args:
+     Options:
        -a,--any = Report if any host has loss instead of all hosts (False)
        -b,--base = base name for output file ("<base>-<host>")  ("ncheck")
        -d,--dir = directory to save output  (None)
@@ -45,21 +43,21 @@ class Conf:
         self.test = False
 
         # ping options
-        self.hosts: List[str] = []
-        self.num = 100
-        self.interval = ''
-        self.Interface = ''
+        self.hosts: list[str] = []
+        self.num: int = 100
+        self.interval: str = ''
+        self.Interface: str = ''
         self.ip4_only: bool = False
         self.ip6_only: bool = False
 
         self.any = False
         self.verb = False
 
-        self.dir = ''
-        self.base = ''
+        self.dir: str = ''
+        self.base: str = ''
         self.no_parallel = False
 
-        opts = get_avail_options()
+        opts: list[_Opt] = get_avail_options()
         par = parse_args_init('netcheck', opts)
         parsed = par.parse_args()
         if parsed:
@@ -86,88 +84,73 @@ class Conf:
         self.hosts = hosts
 
 
-def parse_args_init(name: str, opts):
+def parse_args_init(name: str, opts: list[_Opt]):
     '''
     Initialize argparse
     '''
     par = argparse.ArgumentParser(description=name)
-    for (opt_keys, kwargs) in opts:
-        if isinstance(opt_keys, tuple) and opt_keys[1]:
-            opt_short = opt_keys[0]
-            opt_long = opt_keys[1]
-            par.add_argument(opt_short, opt_long, **kwargs)
+    for opt in opts:
+        opt_list, kwargs = opt
+        if isinstance(opt_list, str):
+            par.add_argument(opt_list, **kwargs)
         else:
-            opt_short = opt_keys
-            par.add_argument(opt_short, **kwargs)
+            par.add_argument(*opt_list, **kwargs)
     return par
 
 
-def get_avail_options():
+def get_avail_options() -> list[_Opt]:
     """
     Options for argparser
     """
-    opts = []
+    opts: list[_Opt] = []
     val: str | bool | None
+    ohelp: str
 
     val = False
     ohelp = f'Report error if any host has loss instead of all hosts ({val})'
-    opt = [('-a', '--any'), {'action': 'store_true', 'help': ohelp}]
-    opts.append(opt)
+    opts.append((('-a', '--any'), {'action': 'store_true', 'help': ohelp}))
 
     val = 'ncheck'
     ohelp = f'base name for output ({val})'
-    opt = [('-b', '--base'), {'default': val, 'help': ohelp}]
-    opts.append(opt)
+    opts.append((('-b', '--base'), {'default': val, 'help': ohelp}))
 
     val = ''
     ohelp = f'directory to save output ({val})'
-    opt = [('-d', '--dir'), {'default': val, 'help': ohelp}]
-    opts.append(opt)
+    opts.append((('-d', '--dir'), {'default': val, 'help': ohelp}))
 
     val = '0.25'
     ohelp = f'ping interval ({val})'
-    opt = [('-i', '--interval'), {'default': val, 'help': ohelp}]
-    opts.append(opt)
+    opts.append((('-i', '--interval'), {'default': val, 'help': ohelp}))
 
     val = ''
     ohelp = f'ping interface or IP address to use as source ({val})'
-    opt = [('-I', '--Interface'), {'default': val, 'help': ohelp}]
-    opts.append(opt)
+    opts.append((('-I', '--Interface'), {'default': val, 'help': ohelp}))
 
     ohelp = 'Use IPv4 only (False})'
-    opt = [('-4', '--ip4-only'), 
-           {'action': 'store_true', 'help': ohelp}]
-    opts.append(opt)
+    opts.append((('-4', '--ip4-only'), {'action': 'store_true', 'help': ohelp}))
 
-    ohelp = f'Use IPv6 only (False)'
-    opt = [('-6', '--ip6-only'), 
-           {'action': 'store_true', 'help': ohelp}]
-    opts.append(opt)
+    ohelp = 'Use IPv6 only (False)'
+    opts.append((('-6', '--ip6-only'), {'action': 'store_true', 'help': ohelp}))
 
     val = '100'
     ohelp = f'num pings ({val})'
-    opt = [('-n', '--num'), {'default': val, 'help': ohelp}]
-    opts.append(opt)
+    opts.append((('-n', '--num'), {'default': val, 'help': ohelp}))
 
     val = False
     ohelp = f'No parallel ({val})'
-    opt = [('-np', '--no_parallel'), {'action': 'store_true', 'help': ohelp}]
-    opts.append(opt)
+    opts.append((('-np', '--no_parallel'), {'action': 'store_true', 'help': ohelp}))
 
     val = False
     ohelp = f'test mode - generate fake lost packets({val})'
-    opt = [('-t', '--test'), {'action': 'store_true', 'help': ohelp}]
-    opts.append(opt)
+    opts.append((('-t', '--test'), {'action': 'store_true', 'help': ohelp}))
 
     val = '1.1.1.1,8.8.8.8'
     val = None
     ohelp = f'host(s) comma separated if more than one ({val})'
-    opt = [('hosts'), {'default': val, 'help': ohelp, 'nargs': '*'}]
-    opts.append(opt)
+    opts.append(('hosts', {'default': val, 'help': ohelp, 'nargs': '*'}))
 
     val = False
     ohelp = f'verbose mode ({val})'
-    opt = [('-v', '--verb'), {'action': 'store_true', 'help': ohelp}]
-    opts.append(opt)
+    opts.append((('-v', '--verb'), {'action': 'store_true', 'help': ohelp}))
 
     return opts

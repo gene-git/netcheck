@@ -1,16 +1,11 @@
 # SPDX-License-Identifier: GPL-2.0-or-later
 # Copyright (c) 2025-present Gene C <arch@sapience.com>
-'''
- Check network staus using ping
-   - Savs results to file(s)
- ------------
-  2018-12-12
- ------------
-'''
+"""
+Check network staus using ping
+"""
 # pylint: disable=too-few-public-methods,too-many-locals
 # pylint: disable=too-many-instance-attributes
-# ---------------------------------
-from typing import (List)
+
 import os
 import time
 import random
@@ -18,13 +13,12 @@ import random
 from pyconcurrent import (ProcRunAsyncio, ProcResult)
 from .class_conf import Conf
 from .class_result import (Result, merge_results)
-# ---------------------------------
 
 
 class NetCheck:
-    '''
+    """
     Data for network check of 1 host
-    '''
+    """
     def __init__(self):
         self.start_time = time.localtime()
         self.ping_cmd = ''
@@ -34,7 +28,9 @@ class NetCheck:
         self.set_ping_cmd()
 
     def set_ping_cmd(self):
-        """ ping command without host """
+        """
+        ping command without host
+        """
         conf = self.conf
         num = conf.num
         interval = conf.interval
@@ -78,12 +74,12 @@ class NetCheck:
 
         self.result = self.extract_results(proc.result)
 
-    def extract_results(self, proc_results: List[ProcResult]) -> List[Result]:
+    def extract_results(self, proc_results: list[ProcResult]) -> list[Result]:
         """
         Extract result data from
         """
         conf = self.conf
-        results: List[Result] = []
+        results: list[Result] = []
         if not proc_results:
             return results
 
@@ -117,10 +113,10 @@ class NetCheck:
                 res.nlost = res.nsent - res.nrecv
                 res.loss_pct = 100.0 * res.nlost / res.nsent
 
-                res.min = get_float(0.0, rtt[0])
-                res.avg = get_float(0.0, rtt[1])
-                res.max = get_float(0.0, rtt[2])
-                res.dev = get_float(0.0, rtt[3].split(" ")[0])
+                res.min = str_to_float(0.0, rtt[0])
+                res.avg = str_to_float(0.0, rtt[1])
+                res.max = str_to_float(0.0, rtt[2])
+                res.dev = str_to_float(0.0, rtt[3].split(" ")[0])
 
                 res.bad_hosts = 1 if res.nlost > 0 else 0
 
@@ -205,12 +201,8 @@ class NetCheck:
                 file = os.path.join(conf.dir, f'{conf.base}-{res.host}')
                 res.save(file)
 
-# ---------------------------------
-# Helpers
-# ---------------------------------
 
-
-def get_float(default, string) -> float:
+def str_to_float(default, string) -> float:
     """
     if string is a number return as float else return default
     """

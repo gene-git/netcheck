@@ -3,11 +3,14 @@
 '''
 Plot tool
 '''
+from typing import Any
 import os
 import matplotlib.pyplot as plt
 
 from .class_conf import parse_args_init
 from .class_plotdata import PlotData
+
+type _Opt = tuple[str | tuple[str, ...], dict[str, Any]]
 
 
 class Plot:
@@ -82,41 +85,36 @@ class Plot:
             plt.show()
 
 
-def get_avail_options():
+def get_avail_options() -> list[_Opt]:
     '''
     Command line
     '''
-    opts = []
+    opts: list[_Opt] = []
     val: str | bool | None
+    ohelp: str
 
     val = './pdf'
     ohelp = f'Directory to write plot pdf file ({val})'
-    opt = [('-d', '--dir'), {'default': val, 'help': ohelp}]
-    opts.append(opt)
+    opts.append((('-d', '--dir'), {'default': val, 'help': ohelp}))
 
     val = 'all'
     ohelp = f'End time : absolute or relative days ({val})'
-    opt = [('-e', '--end'), {'default': val, 'help': ohelp}]
-    opts.append(opt)
+    opts.append((('-e', '--end'), {'default': val, 'help': ohelp}))
 
     val = 'data'
     ohelp = f'Input csv file ({val})'
-    opt = [('-f', '--file'), {'default': val, 'help': ohelp}]
-    opts.append(opt)
+    opts.append((('-f', '--file'), {'default': val, 'help': ohelp}))
 
     val = ''
     ohelp = 'Output PDF : if not specified will be based on input filename'
-    opt = [('-o', '--out'), {'default': val, 'help': ohelp}]
-    opts.append(opt)
+    opts.append((('-o', '--out'), {'default': val, 'help': ohelp}))
 
     val = 'all'
     ohelp = f'Start time : absolute or relative days ({val})'
-    opt = [('-s', '--start'), {'default': val, 'help': ohelp}]
-    opts.append(opt)
+    opts.append((('-s', '--start'), {'default': val, 'help': ohelp}))
 
     val = False
     ohelp = f'Show plot in terminal ({val})'
-    opt = [('-sh', '--show'), {'action': 'store_true', 'help': ohelp}]
-    opts.append(opt)
+    opts.append((('-sh', '--show'), {'action': 'store_true', 'help': ohelp}))
 
     return opts

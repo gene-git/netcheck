@@ -2,18 +2,12 @@
 # Copyright (c) 2025-present Gene C <arch@sapience.com>
 '''
  Check network staus using ping
-   - Savs results to file(s)
- ------------
-  2018-12-12
- ------------
 '''
 # pylint: disable=too-few-public-methods,too-many-instance-attributes
-# ---------------------------------
-from typing import (List)
+
 import os
 import time
 import copy
-# ---------------------------------
 
 
 class Result:
@@ -91,7 +85,7 @@ class Result:
             fob.write(line)
 
 
-def merge_results(results: List[Result]) -> Result:
+def merge_results(results: list[Result]) -> Result:
     """
     Merge multiple results together
      - numeric are summed or averaged as appropriate
