@@ -24,10 +24,11 @@ Key features
 Recent Changes
 ==============
 
-**1.11.0**
+**1.11.1**
 
-* Use meson / meson-python for build / package management,
-* periodic code review
+* Change Arch package dependencies that have been renamed:
+
+  - pyconcurrent -> python-pyconcurrent
 
 Getting Started
 ===============

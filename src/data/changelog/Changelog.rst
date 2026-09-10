@@ -6,12 +6,22 @@ Tags
 
 .. code-block:: text
 
-	1.9.0 (2025-10-13) -> 1.11.0, origin/master (2026-01-06)
-	11 commits.
+	1.9.0 (2025-10-13) -> 1.11.1 (2026-09-10)
+	12 commits.
 
 Commits
 =======
 
+
+* 2026-09-10  : **1.11.1**
+
+.. code-block:: text
+
+              - **1.11.1**
+            
+                * Change Arch package dependencies that have been renamed:
+            
+                  - pyconcurrent -> python-pyconcurrent
 
 * 2026-01-06  : **1.11.0, origin/master**
 
