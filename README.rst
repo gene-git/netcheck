@@ -10,7 +10,7 @@ Overview
 netcheck : Check network connectivity
 
 Key features
-============
+------------
 
 * netcheck uses ping to check network status of multiple hosts/ips
 * Checking a single remote site is insufficient to distinguish whether 
@@ -21,14 +21,13 @@ Key features
 * Data is saved to file(s)
 * netcheck-plot can be used to plot the saved data.
 
-Recent Changes
-==============
+Documentation
+-------------
 
-**1.11.1**
+The manual provides detailed information and is available in both HTML and PDF formats.
+Both are installed under */usr/share/netcheck/docs*.
 
-* Change Arch package dependencies that have been renamed:
-
-  - pyconcurrent -> python-pyconcurrent
+The manual is also available at: `readthedocs <https://netcheck.readthedocs.io>`_.
 
 Getting Started
 ===============

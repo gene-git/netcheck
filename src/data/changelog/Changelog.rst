@@ -6,14 +6,20 @@ Tags
 
 .. code-block:: text
 
-	1.9.0 (2025-10-13) -> 1.11.1 (2026-09-10)
-	12 commits.
+	1.9.0 (2025-10-13) -> 1.11.2 (2026-10-08)
+	13 commits.
 
 Commits
 =======
 
 
-* 2026-09-10  : **1.11.1**
+* 2026-10-08  : **1.11.2**
+
+.. code-block:: text
+
+              - 1.11.2 Documentation available `readthedocs <https://netcheck.readthedocs.io>`
+
+* 2026-09-10  : **1.11.1, origin/master**
 
 .. code-block:: text
 
@@ -23,7 +29,7 @@ Commits
             
                   - pyconcurrent -> python-pyconcurrent
 
-* 2026-01-06  : **1.11.0, origin/master**
+* 2026-01-06  : **1.11.0**
 
 .. code-block:: text
 

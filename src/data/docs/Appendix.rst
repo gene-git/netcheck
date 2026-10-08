@@ -22,9 +22,8 @@ to verify the git tag.  You can also manually verify the signature::
 
 To build manually, clone the repo and ::
 
-
-        ./scripts/do-build
-        ./scripts/do-install <destination-directory>
+    ./scripts/do-build
+    ./scripts/do-install <destination-directory>
 
 Dependencies
 ============
@@ -50,7 +49,4 @@ Created by Gene C. and licensed under the terms of the GPL-2.0-or-later license.
 
 * SPDX-License-Identifier: GPL-2.0-or-later
 * SPDX-FileCopyrightText: © 2025-present  Gene C <arch@sapience.com>
-
-
-
 
